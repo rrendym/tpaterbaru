@@ -1,0 +1,80 @@
+<form name="pendaftaranSantriTPA" 
+      method="POST" 
+      data-netlify="true" 
+      netlify-honeypot="bot-field" 
+      action="/sukses-pendaftaran.html"> 
+      ```
+Nah, `action="/sukses-pendaftaran.html"` itu memberitahu Netlify, "Setelah formulir ini berhasil dikirim, tolong tampilkan halaman yang namanya `sukses-pendaftaran.html` ya."
+
+Masalahnya, kemungkinan besar kamu **belum membuat atau belum meng-upload file `sukses-pendaftaran.html`** ini ke Netlify bareng sama file formulir (`index.html` atau apa pun nama file utama kamu).
+
+**Cara Memperbaikinya Gampang:**
+
+1.  **Buat File Baru:**
+    * Buat file HTML baru di komputer kamu. Kasih nama persis: `sukses-pendaftaran.html`.
+
+2.  **Isi File `sukses-pendaftaran.html`:**
+    * Isinya bisa sederhana aja, yang penting ada pesan kalau pendaftaran berhasil. Ini contoh isinya:
+
+    ```html
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pendaftaran Berhasil - TPA Al Hidayah</title>
+        <script src="https://cdn.tailwindcss.com"></script> <style>
+            body {
+                font-family: 'Open Sans', sans-serif; /* Samakan dengan font utama jika perlu */
+                background-color: #f8f9fa;
+                color: #212529;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                text-align: center;
+                padding: 20px;
+            }
+            .container {
+                background-color: #fff;
+                padding: 40px;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            h1 {
+                font-family: 'Merriweather', serif; /* Samakan dengan font utama jika perlu */
+                color: #0A2342; /* Warna biru dongker kita */
+                font-size: 28px;
+                margin-bottom: 16px;
+            }
+            p {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+            a.button {
+                display: inline-block;
+                padding: 12px 24px;
+                background-color: #0A2342; /* Warna biru dongker */
+                color: white;
+                text-decoration: none;
+                border-radius: 4px;
+                font-weight: 500;
+                transition: background-color 0.15s ease-in-out;
+            }
+            a.button:hover {
+                background-color: #071A30; /* Warna hover biru dongker */
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="container">
+            <h1>Pendaftaran Berhasil!</h1>
+            <p>Terima kasih, data pendaftaran Anda telah kami terima di TPA Al - Hidayah.</p>
+            <p>Kami akan segera menghubungi Anda untuk informasi selanjutnya.</p>
+            <a href="/" class="button">Kembali ke Halaman Utama</a>
+            </div>
+    </body>
+    </html>
+    ```

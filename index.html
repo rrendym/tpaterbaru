@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Santri Baru - TPA Al Hidayah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f8f9fa; /* Latar belakang halaman yang sangat netral */
+            color: #212529; /* Warna teks utama */
+            line-height: 1.6;
+        }
+
+        /* Variabel Warna Biru Dongker */
+        :root {
+            --biru-dongker-primary: #0A2342; /* Biru dongker yang lebih deep dan elegan */
+            --biru-dongker-secondary: #124E8C; /* Biru dongker lebih terang untuk aksen */
+            --biru-dongker-hover: #071A30;
+            --biru-dongker-focus-ring: rgba(10, 35, 66, 0.25);
+            --biru-dongker-border: #0A2342;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-muted: #6c757d;
+        }
+
+        .website-header {
+            background-color: #ffffff; /* Header dengan latar putih bersih */
+            padding: 20px 0;
+            border-bottom: 1px solid #dee2e6;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .header-container {
+            max-width: 960px; /* Lebar kontainer header yang umum */
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-text-header {
+            font-family: 'Merriweather', serif; /* Font serif untuk kesan formal dan elegan pada logo */
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--biru-dongker-primary);
+            text-decoration: none;
+        }
+        
+        .header-nav a { /* Contoh jika ada navigasi sederhana */
+            font-family: 'Roboto', sans-serif;
+            color: var(--text-secondary);
+            margin-left: 20px;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.2s ease;
+        }
+        .header-nav a:hover {
+            color: var(--biru-dongker-primary);
+        }
+
+        .hero-section {
+            background-color: var(--biru-dongker-primary);
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .hero-title {
+            font-family: 'Merriweather', serif;
+            font-size: 28px; /* Disesuaikan */
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        .hero-subtitle, .hadith-text {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px; /* Disesuaikan */
+            max-width: 700px;
+            margin: 0 auto 8px auto;
+            opacity: 0.9;
+        }
+        .hadith-arabic {
+            font-family: 'Scheherazade New', serif; /* Font Arab yang baik jika tersedia, atau fallback */
+            font-size: 22px; /* Disesuaikan */
+            margin-top: 16px;
+            direction: rtl;
+        }
+
+
+        .form-wrapper {
+            max-width: 700px;
+            margin: 30px auto; /* Jarak dari header ke form */
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            overflow: hidden; /* Agar border-radius bekerja dengan baik */
+        }
+        
+        .form-title-section {
+            padding: 24px 24px 20px;
+            border-bottom: 1px solid #e9ecef; /* Garis pemisah yang lebih halus */
+        }
+
+        .form-main-title {
+            font-family: 'Roboto', sans-serif;
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .form-main-description {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .question-block {
+            padding: 20px 24px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .question-block:last-of-type { /* Menggunakan last-of-type untuk elemen terakhir dengan class ini */
+            border-bottom: none;
+        }
+
+        .question-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .question-label .required-star {
+            color: #dc3545;
+            margin-left: 2px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 14px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background-color: #fff;
+            color: var(--text-primary);
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--biru-dongker-secondary);
+            outline: none;
+            box-shadow: 0 0 0 0.2rem var(--biru-dongker-focus-ring);
+        }
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: #6c757d;
+        }
+
+        .radio-group label {
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-left: 8px;
+            cursor: pointer;
+        }
+        .form-radio {
+            width: 18px;
+            height: 18px;
+            border-color: #adb5bd;
+            cursor: pointer;
+        }
+        .form-radio:checked {
+            background-color: var(--biru-dongker-primary);
+            border-color: var(--biru-dongker-primary);
+        }
+        .form-radio:focus {
+             box-shadow: 0 0 0 0.2rem var(--biru-dongker-focus-ring);
+        }
+
+        .form-actions {
+            padding: 20px 24px;
+            background-color: #f8f9fa; /* Latar berbeda untuk area tombol */
+            border-top: 1px solid #e9ecef;
+            text-align: right; /* Tombol di kanan */
+        }
+        .btn-submit {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 10px 24px;
+            background-color: var(--biru-dongker-primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.15s ease-in-out;
+        }
+        .btn-submit:hover {
+            background-color: var(--biru-dongker-hover);
+        }
+
+        .message-box {
+            margin: 0 24px 16px 24px; /* Ditempatkan sebelum form, setelah judul form */
+            padding: 12px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+        .success {
+            background-color: #d1e7dd;
+            border: 1px solid #badbcc;
+            color: #0f5132;
+        }
+        .error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c2c7;
+            color: #842029;
+        }
+        .page-footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 13px;
+            color: var(--text-muted);
+            background-color: #e9ecef; /* Footer dengan latar sedikit berbeda */
+            margin-top: 30px;
+        }
+
+        /* Untuk font Arab, tambahkan jika belum ada di Google Fonts link */
+        @import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap');
+
+        /* Styling untuk field honeypot agar benar-benar tersembunyi */
+        .netlify-honeypot-field {
+            position: absolute !important;
+            clip: rect(1px, 1px, 1px, 1px) !important;
+            padding:0 !important;
+            border:0 !important;
+            height: 1px !important;
+            width: 1px !important;
+            overflow: hidden !important;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="website-header">
+        <div class="header-container">
+            <a href="#" class="logo-text-header">TPA Al - Hidayah</a>
+            <nav class="header-nav">
+                </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <h2 class="hero-title">Mengapa Belajar Mengaji?</h2>
+        <p class="hero-subtitle">
+            Mempelajari Al-Qur'an adalah cahaya yang menerangi kehidupan, petunjuk menuju kebenaran, dan sumber ketenangan jiwa.
+            Dengan mengaji, kita tidak hanya belajar membaca, tetapi juga memahami pedoman hidup yang mulia.
+        </p>
+        <div class="hadith-text mt-4">
+            Rasulullah ﷺ bersabda:
+            <p class="hadith-arabic">طَلَبُ الْعِلْمِ فَرِيضَةٌ عَلَى كُلِّ مُسْلِمٍ</p>
+            <p class="italic">"Menuntut ilmu itu wajib atas setiap Muslim."</p>
+            <p class="text-xs opacity-75">(HR. Ibnu Majah, dishahihkan Al Albani)</p>
+        </div>
+    </section>
+
+    <div class="form-wrapper">
+        <div class="form-title-section">
+            <h1 class="form-main-title">Formulir Pendaftaran Santri Baru</h1>
+            <p class="form-main-description">
+                Silakan isi data calon santri dengan lengkap dan benar.
+                Tanda (<span class="text-red-600 font-semibold">*</span>) wajib diisi.
+            </p>
+        </div>
+
+        <div id="statusMessageContainer">
+             </div>
+
+        <form name="pendaftaranSantriTPA" 
+              method="POST" 
+              data-netlify="true" 
+              netlify-honeypot="bot-field" 
+              action="/sukses-pendaftaran.html"> 
+              <input type="hidden" name="form-name" value="pendaftaranSantriTPA" />
+            <p class="netlify-honeypot-field">
+                <label>Jangan isi ini jika Anda manusia: <input name="bot-field" /></label>
+            </p>
+            <div class="question-block">
+                <label for="nama_lengkap" class="question-label">Nama Lengkap Santri <span class="required-star">*</span></label>
+                <input type="text" id="nama_lengkap" name="nama_lengkap" class="form-input" required placeholder="Masukkan nama lengkap calon santri">
+            </div>
+
+            <div class="question-block">
+                <label for="tempat_lahir" class="question-label">Tempat Lahir</label>
+                <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-input" placeholder="Kota kelahiran">
+            </div>
+
+            <div class="question-block">
+                <label for="tanggal_lahir" class="question-label">Tanggal Lahir</label>
+                <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-input">
+            </div>
+
+            <div class="question-block">
+                <label class="question-label">Jenis Kelamin <span class="required-star">*</span></label>
+                <div class="space-y-2 mt-2">
+                    <label class="flex items-center">
+                        <input type="radio" name="jenis_kelamin" value="Laki-laki" class="form-radio" checked required>
+                        <span class="ml-3">Laki-laki</span>
+                    </label>
+                    <label class="flex items-center">
+                        <input type="radio" name="jenis_kelamin" value="Perempuan" class="form-radio" required>
+                        <span class="ml-3">Perempuan</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <label for="alamat" class="question-label">Alamat Lengkap Domisili</label>
+                <textarea id="alamat" name="alamat" rows="3" class="form-textarea" placeholder="Contoh: Jl. Mawar No. 10, RT 01 RW 02, Kel. Melati, Kec. Anggrek, Kota Depok, Jawa Barat 16400"></textarea>
+            </div>
+
+            <div class="question-block">
+                <label for="nama_wali" class="question-label">Nama Orang Tua/Wali <span class="required-star">*</span></label>
+                <input type="text" id="nama_wali" name="nama_wali" class="form-input" required placeholder="Nama ayah, ibu, atau wali yang bertanggung jawab">
+            </div>
+
+            <div class="question-block">
+                <label for="no_telepon_wali" class="question-label">Nomor Telepon/WA Orang Tua/Wali <span class="required-star">*</span></label>
+                <input type="tel" id="no_telepon_wali" name="no_telepon_wali" class="form-input" required placeholder="Contoh: 081234567890 (nomor yang aktif)">
+            </div>
+
+            <div class="question-block">
+                <label for="email_wali" class="question-label">Alamat Email Orang Tua/Wali (Opsional)</label>
+                <input type="email" id="email_wali" name="email_wali" class="form-input" placeholder="Untuk informasi via email: email@contoh.com">
+            </div>
+            
+            <div class="question-block">
+                <label for="pengalaman_mengaji" class="question-label">Pengalaman Mengaji Sebelumnya <span class="required-star">*</span></label>
+                <select id="pengalaman_mengaji" name="pengalaman_mengaji" class="form-select" required>
+                    <option value="" disabled selected>-- Pilih Pengalaman --</option>
+                    <option value="Belum Pernah">Belum pernah mengaji sama sekali</option>
+                    <option value="Iqro">Sudah pernah mengaji (Iqro')</option>
+                    <option value="Al-Quran Belum Lancar">Sudah pernah mengaji (Al-Qur'an, belum lancar)</option>
+                    <option value="Al-Quran Lancar">Sudah pernah mengaji (Al-Qur'an, sudah lancar)</option>
+                    <option value="Tahfidz">Sudah pernah mengaji (Tahfidz/Menghafal)</option>
+                    <option value="Lainnya">Lainnya (Jelaskan di detail)</option>
+                </select>
+            </div>
+
+            <div class="question-block" id="detailPengalamanBlock" style="display: none;">
+                <label for="detail_pengalaman_mengaji" class="question-label">Detail Pengalaman Mengaji (Jika sudah pernah atau lainnya)</label>
+                <textarea id="detail_pengalaman_mengaji" name="detail_pengalaman_mengaji" rows="3" class="form-textarea" placeholder="Contoh: Terakhir Iqro' jilid 5 di TPA An-Nur, atau sudah hafal juz 30, dll."></textarea>
+            </div>
+
+            <div class="question-block">
+                <label for="catatan_tambahan_umum" class="question-label">Catatan Tambahan Umum (Opsional)</label>
+                <textarea id="catatan_tambahan_umum" name="catatan_tambahan_umum" rows="4" class="form-textarea" placeholder="Informasi tambahan lain yang relevan, pertanyaan, atau kebutuhan khusus..."></textarea>
+            </div>
+
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Kirim Pendaftaran</button>
+            </div>
+        </form>
+    </div>
+
+    <footer class="page-footer">
+        TPA Al - Hidayah &copy; <span id="currentYear"></span>. Membangun Generasi Qur'ani.
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const statusMessageContainer = document.getElementById('statusMessageContainer');
+            const urlParams = new URLSearchParams(window.location.search);
+            // Untuk Netlify Forms, status sukses/gagal biasanya ditangani oleh halaman 'action'
+            // Jadi, kita mungkin tidak memerlukan logika status message ini jika 'action' mengarah ke halaman sukses.
+            // Namun, bisa berguna jika Netlify redirect kembali dengan parameter, atau untuk validasi sisi klien.
+            // Untuk saat ini, saya akan biarkan logika status message, tapi mungkin perlu disesuaikan dengan alur Netlify.
+            const status = urlParams.get('status_netlify'); // Contoh jika Netlify redirect dengan param
+
+            if (status) { 
+                let messageText = '';
+                let messageTypeClass = '';
+
+                // Contoh penanganan pesan dari redirect Netlify (ini hanya contoh, Netlify biasanya ke halaman action)
+                if (status === 'sukses_netlify') {
+                    messageText = 'Pendaftaran berhasil! Terima kasih, data Anda telah kami terima.';
+                    messageTypeClass = 'success';
+                } else if (status === 'gagal_netlify') {
+                    messageText = 'Pendaftaran gagal. Silakan coba lagi.';
+                    messageTypeClass = 'error';
+                }
+                
+                if(messageText) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message-box ${messageTypeClass}`;
+                    messageDiv.textContent = messageText;
+                    statusMessageContainer.appendChild(messageDiv);
+                }
+                
+                if (window.history.replaceState) {
+                    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    window.history.replaceState({path: cleanUrl}, '', cleanUrl);
+                }
+            }
+
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            // JavaScript untuk menampilkan/menyembunyikan detail pengalaman mengaji
+            const selectPengalaman = document.getElementById('pengalaman_mengaji');
+            const detailPengalamanBlock = document.getElementById('detailPengalamanBlock');
+            const textareaDetail = document.getElementById('detail_pengalaman_mengaji');
+
+            if(selectPengalaman && detailPengalamanBlock && textareaDetail) { // Pastikan elemen ada
+                selectPengalaman.addEventListener('change', function() {
+                    if (this.value && this.value !== 'Belum Pernah' && this.value !== "") {
+                        detailPengalamanBlock.style.display = 'block';
+                    } else {
+                        detailPengalamanBlock.style.display = 'none';
+                        textareaDetail.value = ''; // Kosongkan textarea jika disembunyikan
+                    }
+                });
+                // Panggil sekali saat load untuk memeriksa kondisi awal (jika ada value terpilih dari cache browser)
+                // dan juga jika halaman di-reload setelah validasi gagal di sisi server (jika ada)
+                if (selectPengalaman.value && selectPengalaman.value !== 'Belum Pernah' && selectPengalaman.value !== "") {
+                    detailPengalamanBlock.style.display = 'block';
+                } else {
+                    detailPengalamanBlock.style.display = 'none';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
